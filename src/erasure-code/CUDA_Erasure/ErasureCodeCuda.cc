@@ -3,7 +3,7 @@
 
 extern "C"
 {
-    #include "Erasure/Erasure.h"
+    #include "Erasure/Erasure.cuh"
 }
 
 #define LARGEST_VECTOR_WORDSIZE 16
@@ -35,6 +35,9 @@ int ErasureCodeCuda::init(ErasureCodeProfile &profile, ostream *ss)
         return err;
     prepare();
     return ErasureCode::init(profile, ss);
+
+    //Init galois field stuff
+    initGF();
 }
 
 int ErasureCodeCuda::parse(ErasureCodeProfile &profile, ostream *ss)
